@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Improving Dysarthric Speech Classification with Generative AI-based Data Augmentation</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <h1>Improving Dysarthric Speech Classification<br>with Generative AI-based Data Augmentation</h1>
+      <p class="header-sub">Demo page with synthesized audio samples</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- AUTHORS -->
+    <section class="section-block">
+      <!-- <h2 class="section-title">Authors</h2> -->
+      <p class="authors-inline">
+	  <br>
+        <a class="author-email-inline" href="mailto:d.lillini@pm.univpm.it">Davide Lillini</a><sup>1</sup>, Teresa Basili<sup>1</sup>, Lucia Migliorelli<sup>2</sup>, Carlo Aironi<sup>1</sup>, Leonardo Gabrielli<sup>1</sup>, Stefano Squartini<sup>1</sup>
+      </p>
+      <p class="authors-affil">
+        <sup>1</sup>Department of Information Engineering, Università Politecnica delle Marche, Ancona, Italy<br>
+        <sup>2</sup>Department of Political Science, Università degli Studi di Teramo, Teramo, Italy
+      </p>
+	  <!-- 
+      <p class="authors-affil">
+        <sup>*</sup> Corresponding author: <a class="author-email-inline" href="mailto:d.lillini@pm.univpm.it">d.lillini@pm.univpm.it</a>
+      </p>
+	   -->
+    </section>
+
+    <!-- ABSTRACT -->
+    <section class="section-block">
+      <h2 class="section-title">Abstract</h2>
+      <p class="abstract-text">
+        Dysarthria is a neurological speech disorder characterized by impaired motor control of speech production, resulting in reduced intelligibility. It commonly arises in the context of neurodegenerative conditions, including amyotrophic lateral sclerosis and cerebral palsy. The development of deep learning systems for dysarthria assessment is hindered by the scarcity of annotated data, which restricts the ability of models to generalize to unseen speakers. This study investigates the effectiveness of diffusion-based generative data augmentation for improving automatic speech intelligibility classification from dysarthric speech. A Grad-TTS model is trained on dysarthric speakers from the TORGO dataset and used to synthesise the vocabulary of the UA-Speech dataset, producing speaker-conditioned samples that combine pathological acoustic traits with increased lexical diversity. The impact of synthetic augmentation is evaluated using ResNet-50 and ResNet-152-based classifiers, in both binary and four-class intelligibility classification tasks. The inclusion of synthetic data consistently improves performance over real-data-only training, achieving up to 84% accuracy in binary classification and a weighted-average F1 score of 50% in the four-class task, evaluated on speakers not observed during training.
+      </p>
+    </section>
+
+    <!-- AUDIO GRID -->
+    <section class="section-block">
+      <h2 class="section-title">Synthesized Samples</h2>
+	  
+	  <p class="legend-inline">
+        <span class="badge badge-array">Original</span>
+        Real recording of the TORGO dysarthric speaker (ground-truth reference used to train Grad-TTS).
+        <br><span class="badge badge-synth">Synthesized</span>
+        Audio synthesized by Grad-TTS using the same textual input as the <em>Original</em>.
+        <br><span class="badge badge-ua">Synthesized (UA-Speech word)</span>
+        Audio synthesized from a word in the <em>UA-Speech</em> vocabulary, conditioned on the TORGO speaker's traits.<br><br>
+      </p>
+	  
+      <div class="table-scroll">
+        <table class="audio-table">
+          <thead>
+            <tr>
+              <th class="th-speaker">Speaker</th>
+              <th>
+                <span class="badge badge-array">Original</span>
+                <span class="th-sub">word</span>
+              </th>
+              <th>
+                <span class="badge badge-synth">Synthesized</span>
+                <span class="th-sub">word</span>
+              </th>
+              <th>
+                <span class="badge badge-array">Original</span>
+                <span class="th-sub">phrase</span>
+              </th>
+              <th>
+                <span class="badge badge-synth">Synthesized</span>
+                <span class="th-sub">phrase</span>
+              </th>
+              <th>
+                <span class="badge badge-ua">Synthesized<br>(UA-Speech word)</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="audio-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-text">
+        Dept. of Information Engineering · Università Politecnica delle Marche, Ancona, Italy<br>
+		© 2026. All rights reserved.
+      </p>
+      <a class="github-link" href="https://github.com/A3Lab-UNIVPM/dysarthric_speech_synthesis" target="_blank" rel="noopener" aria-label="View source on GitHub">
+        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <span>View on GitHub</span>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const speakers = [
+      {
+        id: 'F01',
+        files: [
+          { src: 'audiosamples/F01_0039_word.wav',   caption: '<em>"Swore"</em>' },
+          { src: 'audiosamples/F01_24_word.wav',     caption: '<em>"Swore"</em>' },
+          { src: 'audiosamples/F01_0022_phrase.wav', caption: '<em>"You wished to know all about my grandfather"</em>' },
+          { src: 'audiosamples/F01_13_phrase.wav',   caption: '<em>"You wished to know all about my grandfather"</em>' },
+          { src: 'audiosamples/F01_B1_UW19.wav',     caption: '<em>"Southeast"</em>' },
+        ]
+      },
+      {
+        id: 'F03',
+        files: [
+          { src: 'audiosamples/F03_0017_word.wav',   caption: '<em>"Jacket"</em>' },
+          { src: 'audiosamples/F03_10_word.wav',     caption: '<em>"Jacket"</em>' },
+          { src: 'audiosamples/F03_0011_phrase.wav', caption: '<em>"She had your dark suit in greasy wash water all year"</em>' },
+          { src: 'audiosamples/F03_4_phrase.wav',    caption: '<em>"She had your dark suit in greasy wash water all year"</em>' },
+          { src: 'audiosamples/F03_B1_UW71.wav',     caption: '<em>"Gigantic"</em>' },
+        ]
+      },
+      {
+        id: 'F04',
+        files: [
+          { src: 'audiosamples/F04_0022_word.wav',   caption: '<em>"Beat"</em>' },
+          { src: 'audiosamples/F04_12_word.wav',     caption: '<em>"Beat"</em>' },
+          { src: 'audiosamples/F04_0015_phrase.wav', caption: '<em>"You wished to know all about my grandfather"</em>' },
+          { src: 'audiosamples/F04_5_phrase.wav',    caption: '<em>"You wished to know all about my grandfather"</em>' },
+          { src: 'audiosamples/F04_B1_UW38.wav',     caption: '<em>"Footmarks"</em>' },
+        ]
+      },
+      {
+        id: 'M01',
+        files: [
+          { src: 'audiosamples/M01_0035_word.wav',   caption: '<em>"Sticks"</em>' },
+          { src: 'audiosamples/M01_23_word.wav',     caption: '<em>"Sticks"</em>' },
+          { src: 'audiosamples/M01_0019_phrase.wav', caption: '<em>"He dresses himself in an ancient black frock coat"</em>' },
+          { src: 'audiosamples/M01_10_phrase.wav',   caption: '<em>"He dresses himself in an ancient black frock coat"</em>' },
+          { src: 'audiosamples/M01_B3_UW44.wav',     caption: '<em>"Forgetfulness"</em>' },
+        ]
+      },
+      {
+        id: 'M02',
+        files: [
+          { src: 'audiosamples/M02_0025_word.wav',   caption: '<em>"Chair"</em>' },
+          { src: 'audiosamples/M02_9_word.wav',      caption: '<em>"Chair"</em>' },
+          { src: 'audiosamples/M02_0020_phrase.wav', caption: '<em>"Grandfather likes to be modern in his language"</em>' },
+          { src: 'audiosamples/M02_6_phrase.wav',    caption: '<em>"Grandfather likes to be modern in his language"</em>' },
+          { src: 'audiosamples/M02_B3_UW88.wav',     caption: '<em>"Frog"</em>' },
+        ]
+      },
+      {
+        id: 'M03',
+        files: [
+          { src: 'audiosamples/M03_0043_word.wav',   caption: '<em>"Swarm"</em>' },
+          { src: 'audiosamples/M03_25_word.wav',     caption: '<em>"Swarm"</em>' },
+          { src: 'audiosamples/M03_0029_phrase.wav', caption: '<em>"Except in the winter when the ooze or snow or ice prevents"</em>' },
+          { src: 'audiosamples/M03_14_phrase.wav',   caption: '<em>"Except in the winter when the ooze or snow or ice prevents"</em>' },
+          { src: 'audiosamples/M03_B3_UW93.wav',     caption: '<em>"Glasses"</em>' },
+        ]
+      },
+      {
+        id: 'M04',
+        files: [
+          { src: 'audiosamples/M04_0031_word.wav',   caption: '<em>"Trace"</em>' },
+          { src: 'audiosamples/M04_18_word.wav',     caption: '<em>"Trace"</em>' },
+          { src: 'audiosamples/M04_0020_phrase.wav', caption: '<em>"Well he is nearly ninety-three years old"</em>' },
+          { src: 'audiosamples/M04_10_phrase.wav',   caption: '<em>"Well he is nearly ninety-three years old"</em>' },
+          { src: 'audiosamples/M04_B1_UW36.wav',     caption: '<em>"Exactitude"</em>' },
+        ]
+      },
+      {
+        id: 'M05',
+        files: [
+          { src: 'audiosamples/M05_0032_word.wav',   caption: '<em>"Left"</em>' },
+          { src: 'audiosamples/M05_23_word.wav',     caption: '<em>"Left"</em>' },
+          { src: 'audiosamples/M05_0019_phrase.wav', caption: '<em>"A long flowing beard clings to his chin"</em>' },
+          { src: 'audiosamples/M05_11_phrase.wav',   caption: '<em>"A long flowing beard clings to his chin"</em>' },
+          { src: 'audiosamples/M05_B1_CW76.wav',     caption: '<em>"Way"</em>' },
+        ]
+      },
+    ];
+
+    const tbody = document.getElementById('audio-tbody');
+    speakers.forEach(spk => {
+      const tr = document.createElement('tr');
+      const tdSpk = document.createElement('td');
+      tdSpk.className = 'speaker-cell';
+      tdSpk.innerHTML = `<span class="speaker-tag">TORGO ${spk.id}</span>`;
+      tr.appendChild(tdSpk);
+      spk.files.forEach(f => {
+        const td = document.createElement('td');
+        td.innerHTML = `
+          <audio controls>
+            <source src="${f.src}" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+          <div class="audio-caption">${f.caption}</div>`;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  </script>
+
+</body>
+</html>
